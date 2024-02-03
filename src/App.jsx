@@ -10,7 +10,7 @@ import {
   useSetRecoilState,
 } from "recoil";
 import countState from "./components/store/Count";
-import { evenOddState } from "./components/store/Selector";
+import evenOddState from "./components/store/Selector";
 
 // import "./App.css";
 // // import Landing from "./components/Landing";
@@ -130,8 +130,15 @@ function Count() {
 function CountRenderer() {
   // const { count } = useContext(CountContext);
   const count = useRecoilValue(countState);
-  console.log(count);
-  return <div>{count}</div>;
+  const value = useRecoilValue(evenOddState);
+  console.log(value, "=========value");
+  console.log(count, "==========count");
+  return (
+    <div>
+      {count}
+      <p>{value ? "This is even" : "This is odd"}</p>
+    </div>
+  );
 }
 
 function Buttons() {
@@ -139,12 +146,10 @@ function Buttons() {
 
   // const [count, setCount] = useRecoilState(countState);
   const setCount = useSetRecoilState(countState);
-  const value = useRecoilValue(evenOddState);
   return (
     <div>
       <button onClick={() => setCount((count) => count + 1)}>increment</button>
       <button onClick={() => setCount((count) => count - 1)}>decrement</button>
-      <p>{value}</p>
     </div>
   );
 }

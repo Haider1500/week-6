@@ -6,9 +6,9 @@ const evenOddState = selector({
   get: ({ get }) => {
     const count = get(countState);
     if (count % 2 == 0) {
-      return "This is even";
+      return true;
     } else {
-      return "This is odd";
+      return false;
     }
   },
 });
